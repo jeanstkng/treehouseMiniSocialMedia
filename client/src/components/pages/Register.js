@@ -40,11 +40,11 @@ const Register = (props) => {
                 <input type="password" name="password2" placeholder="Confirm Password" value={password2} onChange={handleChange}/>
                 <input type="submit" value="Sign Up"/>
             </form>
-            <div className="question">
-                {errors !== null && <button className="danger">
+            <div>
+                    {errors !== null && <button className="btn btn-danger">
                     {errors.msg ? errors.msg : errors.error[0].msg}
                     <span onClick={clearError}>X</span></button>}
-                <p>Already have an account? {" "} <Link to='/login'>Login</Link></p>
+                <p>¿Ya estás registrado? {" "} <Link to='/login'>Logeate</Link></p>
             </div>
         </div>
     )
