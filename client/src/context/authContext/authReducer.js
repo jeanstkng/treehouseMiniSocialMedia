@@ -18,7 +18,6 @@ import {
                 user: action.payload,
                 userAuth: true,
                 errors: null,
-                loading: true
             }
         case SUCCESS_REGISTER:
         case SUCCESS_LOGIN:
@@ -27,7 +26,6 @@ import {
                 ...state,
                 userAuth: true,
                 errors:null,
-                loading: true
             }
         case FAIL_REGISTER:
         case FAIL_LOGIN:
@@ -40,7 +38,6 @@ import {
                 user: null,
                 userAuth:null,
                 errors: action.payload,
-                loading: false
             }
         case SET_ERROR:
             return{

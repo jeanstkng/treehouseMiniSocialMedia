@@ -13,9 +13,15 @@ const postSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    points:{
-        type: Number
-    }
+    points:[{
+        isPositive: {
+            type: Boolean
+        },
+        user:{
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'users'
+        }}
+    ]
 })
 
 module.exports = mongoose.model('post', postSchema)

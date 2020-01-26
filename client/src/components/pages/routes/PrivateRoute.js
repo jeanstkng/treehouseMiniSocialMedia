@@ -1,9 +1,13 @@
-import React,{useContext} from 'react'
+import React,{useContext, useEffect} from 'react'
 import AuthContext from "../../../context/authContext/authContext";
 import { Route, Redirect } from "react-router-dom";
 
 const PrivateRoute = ({component: Component, ...rest}) => {
-    const {userAuth} = useContext(AuthContext)
+    const {userAuth, getUser} = useContext(AuthContext)
+    useEffect(() => {
+        getUser()
+        //eslint-disable-next-line
+    },[])
     return (
         <Route 
             {...rest}
