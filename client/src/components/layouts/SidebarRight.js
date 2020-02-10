@@ -5,16 +5,16 @@ const SidebarRight = () => {
         <div id="right-sidebar-wrapper">
             <ul className="sidebar-nav">
                 <li className="sidebar-brand">
-                    <a href="#">Right Sidebar</a>
+                    <a >Right Sidebar</a>
                 </li>
 
                 <li>
-                    <a data-toggle="collapse" href="#recent-search" aria-expanded="false">Recent Search <span className="caret"></span></a>
+                    <a data-toggle="collapse" aria-expanded="false">Recent Search <span className="caret"></span></a>
                     <div className="collapse in sub-bar" id="recent-search">
-                        <a href="#">Keyword 1</a>
-                        <a href="#">Keyword 2</a>
-                        <a href="#">Keyword 3</a>
-                        <a href="#">Keyword 4</a>
+                        <a >Keyword 1</a>
+                        <a >Keyword 2</a>
+                        <a >Keyword 3</a>
+                        <a >Keyword 4</a>
                     </div>
                 </li>
             </ul>
