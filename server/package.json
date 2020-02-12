@@ -17,7 +17,7 @@
   "author": "Jean 'JeanStkng' Castillo",
   "license": "ISC",
   "dependencies": {
-    "bcrypt": "^3.0.0",
+    "bcryptjs": "^2.4.3",
     "concurrently": "^5.0.2",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",

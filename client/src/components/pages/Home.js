@@ -22,8 +22,8 @@ const Home = () => {
 
             <HomePosts />
 
-            <a onClick={() => setToggled(!leftToggled)} className="btn btn-link btn-md" id="left-menu-toggle">AA<span className="glyphicon glyphicon-chevron-left"></span></a>
-            <a onClick={() => setToggled2(!rightToggled)} className="btn btn-link btn-md" id="right-menu-toggle">AA<span className="glyphicon glyphicon-chevron-right"></span></a>
+            <a onClick={() => setToggled(!leftToggled)} className="btn btn-link btn-md position-fixed" id="left-menu-toggle">AA<span className="glyphicon glyphicon-chevron-left"></span></a>
+            <a onClick={() => setToggled2(!rightToggled)} className="btn btn-link btn-md position-fixed" id="right-menu-toggle">AA<span className="glyphicon glyphicon-chevron-right"></span></a>
 
         </div>
     )

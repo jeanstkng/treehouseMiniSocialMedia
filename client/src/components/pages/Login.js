@@ -27,7 +27,7 @@ const Login = (props) => {
 
     return (
         <div className="container">
-            <h1>TreeHouse - Iniciar Sesion</h1>
+            <h1>TreeHouse - Iniciar Sesión</h1>
             <form onSubmit={submit} className="col-8">
                 <div className="form-group row">
                   <label className="col-sm-2">Email</label>

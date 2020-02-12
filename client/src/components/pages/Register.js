@@ -35,23 +35,23 @@ const Register = (props) => {
             <h1>TreeHouse - Registro</h1>
             <form onSubmit={submit}>
                 <div className="form-group row">
-                    <label className="col-sm-2">Nombre</label>
-                    <input className="form-control col-sm-10" type="text" name="name" placeholder="Nombre" value={name} onChange={handleChange}/>
+                    <label className="col-sm-2 mr-2">Nombre</label>
+                    <input className="form-control col-sm-6" type="text" name="name" placeholder="" value={name} onChange={handleChange}/>
                 </div>
                 <div className="form-group row">
-                    <label className="col-sm-2">Email</label>
-                    <input className="form-control col-sm-10" type="email" name="email" placeholder="E-mail" value={email} onChange={handleChange}/>
+                    <label className="col-sm-2 mr-2">Email</label>
+                    <input className="form-control col-sm-6" type="email" name="email" placeholder="" value={email} onChange={handleChange}/>
                 </div>
                 <div className="form-group row">
-                    <label className="col-sm-2">Contrasena</label>
-                    <input className="form-control col-sm-10" type="password" name="password" placeholder="" value={password} onChange={handleChange}/>
+                    <label className="col-sm-2 mr-2">Contraseña</label>
+                    <input className="form-control col-sm-6" type="password" name="password" placeholder="" value={password} onChange={handleChange}/>
                 </div>
                 <div className="form-group row">
-                    <label className="col-sm-2">Confirmar Contrasena</label>
-                    <input className="form-control col-sm-10" type="password" name="password2" placeholder="Confirmar" value={password2} onChange={handleChange}/>
+                    <label className="col-sm-2 mr-2">Confirmar Contraseña</label>
+                    <input className="form-control col-sm-6" type="password" name="password2" placeholder="" value={password2} onChange={handleChange}/>
                 </div>
                 <div className="form-group row">
-                    <label className="col-sm-2"></label>
+                    <label className="col-sm-2 mr-2"></label>
                     <input className="btn btn-primary col-sm-6" type="submit" value="Registrarse"/>
                 </div>
             </form>

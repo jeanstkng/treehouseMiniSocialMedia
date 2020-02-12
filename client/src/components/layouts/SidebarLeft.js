@@ -9,7 +9,7 @@ const SidebarLeft = () => {
                   Amigos
                 </a>
             </li>
-            <li>
+            {/* <li>
                 <a data-toggle="collapse" href="/#" aria-expanded="false">Dashboard <span className="caret"></span></a>
                 <div className="collapse sub-bar" id="dashboard">
                     <a href="/#">Dashboard Sub 1</a>
@@ -49,7 +49,7 @@ const SidebarLeft = () => {
             </li>
             <li>
                 <a href="/#">Contact</a>
-            </li>
+            </li> */}
         </ul>
     </div>
        

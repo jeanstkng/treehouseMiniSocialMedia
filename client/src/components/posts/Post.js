@@ -22,19 +22,32 @@ const Post = ({post}) => {
     
     const usuario = user._id
 
+
     let counter = (points.length)
+    let counter2 = (points.filter(puntos => puntos.isPositive === false)).length
 
     const updateCounter =()=> {
-        counter = points.length
+
+        counter = (points.length)
+        counter2 = (points.filter(puntos => puntos.isPositive === false)).length
+
     }
 
     const setPointUp = () => {
         const existe = post.points.find(points => points.user === usuario)
         console.log(existe)
-        if(existe){
-            console.log('Likeado ya')
+        if(existe && existe.isPositive === false){
+            updatePost({
+                ...post,
+                points: [
+                    {
+                        ...existe,
+                        isPositive: true
+                    }
+                ]
+            })
         }
-        else{
+        else if(!existe){
             updatePost({
                 ...post,
                 points: [
@@ -45,7 +58,44 @@ const Post = ({post}) => {
                     }
                 ]
             })
-            console.log(post)
+            //console.log(post)
+        }
+        else{
+            console.log('ya likeado')
+        }
+        updateCounter()
+        console.log(post)
+    }
+
+    const setPointDown = () => {
+        const existePositivo = post.points.find(points => points.user === usuario)
+
+        console.log(existePositivo)
+        if(existePositivo && existePositivo.isPositive === true){
+            updatePost({
+                ...post,
+                points: [
+                    {
+                        ...existePositivo,
+                        isPositive: false
+                    }
+                ]
+            })
+        }
+        else if (!existePositivo) {
+            updatePost({
+                ...post,
+                points: [
+                    ...points,
+                    {
+                        isPositive: false,
+                        user: usuario
+                    }
+                ]
+            })
+        }
+        else {
+            console.log('ya listo')
         }
         updateCounter()
         console.log(post)
@@ -76,17 +126,17 @@ const Post = ({post}) => {
                     <div className="row" onClick={setPointUp}>
                         <FontAwesomeIcon icon="arrow-up" />
                     </div>
-
-                    <div className="row my-2">
-                        <FontAwesomeIcon icon="arrow-down" />
-                    </div>
-                    <div className="col-sm-1 ml-2 mt-3">
+                    <div className="">
                         
                         <p>
-                            {counter}
+                            {counter - counter2}
                         </p>
                     
                     </div>
+                    <div className="row my-2" onClick={setPointDown}>
+                        <FontAwesomeIcon icon="arrow-down" />
+                    </div>
+
                 </div>
 
             </div>
