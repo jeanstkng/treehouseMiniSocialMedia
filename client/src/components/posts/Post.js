@@ -14,12 +14,42 @@ const Post = ({post}) => {
         removePost(_id)
     }
 
-    const [show, setShow] = useState(false);
+    const [show, setShow] = useState(false)
 
-    const handleClose = () => setShow(false);
+    const handleClose = () => setShow(false)
     const handleShow = () => {setShow(true)
                               editPost(post)}
+    
+    const usuario = user._id
 
+    let counter = (points.length)
+
+    const updateCounter =()=> {
+        counter = points.length
+    }
+
+    const setPointUp = () => {
+        const existe = post.points.find(points => points.user === usuario)
+        console.log(existe)
+        if(existe){
+            console.log('Likeado ya')
+        }
+        else{
+            updatePost({
+                ...post,
+                points: [
+                    ...points,
+                    {
+                        isPositive: true,
+                        user: usuario
+                    }
+                ]
+            })
+            console.log(post)
+        }
+        updateCounter()
+        console.log(post)
+    }
     
 
     return (
@@ -38,18 +68,27 @@ const Post = ({post}) => {
                 </div> : null}
                 
             <div className="row">
-                <div className="col-md-10">
+                <div className="col-sm-10">
                     <h3 className=" mx-2 my-2">{title}</h3>
                     <p className="text-justify mx-2 my-2">{contentText}</p>
                 </div>
-                <div className="col-md-2 mt-3">
-                    <div>
+                <div className="col-sm-2 mt-3">
+                    <div className="row" onClick={setPointUp}>
                         <FontAwesomeIcon icon="arrow-up" />
                     </div>
-                    <div className="my-2">
+
+                    <div className="row my-2">
                         <FontAwesomeIcon icon="arrow-down" />
                     </div>
+                    <div className="col-sm-1 ml-2 mt-3">
+                        
+                        <p>
+                            {counter}
+                        </p>
+                    
+                    </div>
                 </div>
+
             </div>
           </div>
           
