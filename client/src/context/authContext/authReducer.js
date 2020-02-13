@@ -10,26 +10,26 @@ import {
     AUTH_ERROR
  } from "../types";
 
- export default (state, action) => {
-    switch(action.type){
+ export default (state, {type, payload}) => {
+    switch(type){
         case USER_LOADED:
             return{
                 ...state,
-                user: action.payload,
+                user: payload,
                 userAuth: true,
                 errors: null,
             }
         case SUCCESS_REGISTER:
         case SUCCESS_LOGIN:
-            localStorage.setItem('token', action.payload.token)
+            localStorage.setItem('token', payload.token)
             return{
                 ...state,
+                
                 userAuth: true,
                 errors:null,
             }
         case FAIL_REGISTER:
         case FAIL_LOGIN:
-        case LOG_OUT:
         case AUTH_ERROR:
             localStorage.removeItem('token')
             return{
@@ -37,12 +37,16 @@ import {
                 token: null,
                 user: null,
                 userAuth:null,
-                errors: action.payload,
+                errors: payload
             }
-        case SET_ERROR:
+        case LOG_OUT:
+            localStorage.removeItem('token')
             return{
                 ...state,
-                errors: action.payload
+                token: null,
+                user: null,
+                userAuth:null,
+                errors: null,
             }
         case CLEAR_ERROR:
             return{

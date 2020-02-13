@@ -1,4 +1,4 @@
-import React,{useContext, useState} from 'react'
+import React,{useContext, useState, useEffect} from 'react'
 import PostContext from '../../context/postContext/postContext'
 import Modal from 'react-bootstrap/Modal'
 import PostForm from './PostForm'
@@ -6,10 +6,17 @@ import AuthContext from '../../context/authContext/authContext'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 const Post = ({post}) => {
-    const {_id, title, contentText, points} = post
+
     const {removePost, editPost, editing, addPost, setPost, clearEdit, updatePost} = useContext(PostContext)
-    const { user } = useContext(AuthContext)
-    
+    const { user,getUser } = useContext(AuthContext)
+
+    useEffect(() => {
+        getUser()
+        // eslint-disable-next-line
+    },[])
+
+    const {_id, title, contentText, points} = post
+
     const handleRemove=()=>{
         removePost(_id)
     }
@@ -23,23 +30,29 @@ const Post = ({post}) => {
     const usuario = user._id
 
 
-    let counter = (points.length)
+    let counter = (points.filter(puntos => puntos.isPositive === true)).length
     let counter2 = (points.filter(puntos => puntos.isPositive === false)).length
+    let total
 
     const updateCounter =()=> {
 
-        counter = (points.length)
+        counter = (points.filter(puntos => puntos.isPositive === true)).length
         counter2 = (points.filter(puntos => puntos.isPositive === false)).length
+                
 
+        console.log('eluno'+(counter - counter2))
+        console.log(counter2 - counter)
     }
 
     const setPointUp = () => {
         const existe = post.points.find(points => points.user === usuario)
         console.log(existe)
         if(existe && existe.isPositive === false){
+            let filtrado = post.points.filter(points => points !== existe)
             updatePost({
                 ...post,
                 points: [
+                    ...filtrado,
                     {
                         ...existe,
                         isPositive: true
@@ -69,12 +82,13 @@ const Post = ({post}) => {
 
     const setPointDown = () => {
         const existePositivo = post.points.find(points => points.user === usuario)
-
         console.log(existePositivo)
         if(existePositivo && existePositivo.isPositive === true){
+            let filtrado = post.points.filter(points => points !== existePositivo)
             updatePost({
                 ...post,
                 points: [
+                    ...filtrado,
                     {
                         ...existePositivo,
                         isPositive: false
@@ -107,8 +121,7 @@ const Post = ({post}) => {
              <br/>
           <div className="border rounded shadow">
             
-                {post.user === user._id ? 
-                <div>
+                {post.user === user._id ? <div>
                     <button className="btn btn-secondary mx-2 my-2" onClick={handleShow} >
                         Editar
                     </button>
@@ -126,14 +139,14 @@ const Post = ({post}) => {
                     <div className="row" onClick={setPointUp}>
                         <FontAwesomeIcon icon="arrow-up" />
                     </div>
-                    <div className="">
+                    <div className="row">
                         
                         <p>
-                            {counter - counter2}
+                            { counter - counter2 }
                         </p>
-                    
+                        
                     </div>
-                    <div className="row my-2" onClick={setPointDown}>
+                    <div className="row mb-2" onClick={setPointDown}>
                         <FontAwesomeIcon icon="arrow-down" />
                     </div>
 
