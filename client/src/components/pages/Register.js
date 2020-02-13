@@ -22,7 +22,7 @@ const Register = (props) => {
     const submit = e => {
         e.preventDefault()
         if (password !== password2) {
-            setError({msg:"Passwords don't match"})
+            setError({msg:"Contraseñas no concuerdan."})
         }
         else{
             registerUser({name, email, password})
@@ -30,37 +30,49 @@ const Register = (props) => {
         }
     }
 
+    
+    var divStyle = {
+        display: 'block',
+        textAlign: 'center'
+    }
+    var form =
+    {
+        display: 'inline-block',
+    }
+
     return (
-        <div className="container col-md-8">
+        <div className="container text-center mt-5">
             <h1>TreeHouse - Registro</h1>
-            <form onSubmit={submit}>
+            <div style={divStyle}>
+            <form style={form} onSubmit={submit}>
                 <div className="form-group row">
-                    <label className="col-sm-2 mr-2">Nombre</label>
-                    <input className="form-control col-sm-6" type="text" name="name" placeholder="" value={name} onChange={handleChange}/>
+                    <label className="col-sm-3 mr-2 font-weight-bold">Nombre</label>
+                    <input required className="form-control col-sm-8" type="text" name="name" placeholder="Ingrese su nombre." value={name} onChange={handleChange}/>
                 </div>
                 <div className="form-group row">
-                    <label className="col-sm-2 mr-2">Email</label>
-                    <input className="form-control col-sm-6" type="email" name="email" placeholder="" value={email} onChange={handleChange}/>
+                    <label className="col-sm-3 mr-2 font-weight-bold">Email</label>
+                    <input required className="form-control col-sm-8" type="email" name="email" placeholder="Ingrese su email." value={email} onChange={handleChange}/>
                 </div>
                 <div className="form-group row">
-                    <label className="col-sm-2 mr-2">Contraseña</label>
-                    <input className="form-control col-sm-6" type="password" name="password" placeholder="" value={password} onChange={handleChange}/>
+                    <label className="col-sm-3 mr-2 font-weight-bold">Contraseña</label>
+                    <input required className="form-control col-sm-8" type="password" name="password" placeholder="Ingrese su contraseña." value={password} onChange={handleChange}/>
                 </div>
                 <div className="form-group row">
-                    <label className="col-sm-2 mr-2">Confirmar Contraseña</label>
-                    <input className="form-control col-sm-6" type="password" name="password2" placeholder="" value={password2} onChange={handleChange}/>
+                    <label className="col-sm-3 mr-2 font-weight-bold">Confirmar Contraseña</label>
+                    <input required className="form-control col-sm-8" type="password" name="password2" placeholder="Confirme su contraseña." value={password2} onChange={handleChange}/>
                 </div>
                 <div className="form-group row">
-                    <label className="col-sm-2 mr-2"></label>
-                    <input className="btn btn-primary col-sm-6" type="submit" value="Registrarse"/>
+                    <label className="col-sm-3 mr-2"></label>
+                    <input className="btn btn-primary col-sm-5" type="submit" value="Registrarse"/>
                 </div>
             </form>
             <div className="row">
                     {errors !== null && <button className="btn btn-danger">
-                    {errors.msg ? errors.msg : errors.error[0].msg}
+                    {errors}
                     <span onClick={clearError}>&nbsp;X</span></button>}
                 <label className="col-sm-2"></label>
-                <p className="col-sm-10">¿Ya estás registrado? {" "} <Link to='/login'>Logeate</Link></p>
+                <p className="col-sm-8">¿Ya estás registrado? {" "} <Link to='/login'>Logeate</Link></p>
+            </div>
             </div>
         </div>
     )

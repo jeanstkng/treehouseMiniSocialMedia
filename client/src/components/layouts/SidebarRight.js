@@ -2,16 +2,21 @@ import React, {useContext} from 'react'
 import authContext from "../../context/authContext/authContext";
 
 const SidebarRight = () => {
-    const { logoutUser, userAuth } = useContext(authContext)
+    const { logoutUser, user } = useContext(authContext)
     
     return (
         <div id="right-sidebar-wrapper">
             <ul className="sidebar-nav">
                 <li className="sidebar-brand">
-                    <a >TreeHouse</a>
+                    <h4 className="text-light font-weight-bold mt-3">TreeHouse</h4>
+                </li>
+                <li>
+                    <p className="ml-3 text-light" >Bienvenido {user.name}</p>
+                </li>
+                <li>
+                    <button onClick={logoutUser} className="ml-3 btn btn-light" >Cerrar Sesión</button>
                 </li>
 
-                <button onClick={logoutUser} className="caret btn btn-light" >Cerrar Sesión</button>
                 <li>
                     <a data-toggle="collapse" aria-expanded="false"> <span className="caret"></span></a>
                     <div className="collapse in sub-bar" id="recent-search">

@@ -8,18 +8,26 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 const Post = ({post}) => {
 
     const {removePost, editPost, editing, addPost, setPost, clearEdit, updatePost} = useContext(PostContext)
-    const { user,getUser } = useContext(AuthContext)
-
-    useEffect(() => {
+    const { user,users,getUser,getUsers, cargando } = useContext(AuthContext)
+    useEffect( () => {
         getUser()
+
         // eslint-disable-next-line
     },[])
+
+    useEffect( () => {
+        getUsers(post.user)
+        // eslint-disable-next-line
+    },[])
+
 
     const {_id, title, contentText, points} = post
 
     const handleRemove=()=>{
         removePost(_id)
     }
+
+    //console.log(users)
 
     const [show, setShow] = useState(false)
 
@@ -29,19 +37,14 @@ const Post = ({post}) => {
     
     const usuario = user._id
 
-
     let counter = (points.filter(puntos => puntos.isPositive === true)).length
     let counter2 = (points.filter(puntos => puntos.isPositive === false)).length
-    let total
 
     const updateCounter =()=> {
 
         counter = (points.filter(puntos => puntos.isPositive === true)).length
         counter2 = (points.filter(puntos => puntos.isPositive === false)).length
                 
-
-        console.log('eluno'+(counter - counter2))
-        console.log(counter2 - counter)
     }
 
     const setPointUp = () => {
@@ -119,7 +122,7 @@ const Post = ({post}) => {
     return (
         <div>
              <br/>
-          <div className="border rounded shadow">
+          <div className="border rounded shadow" >
             
                 {post.user === user._id ? <div>
                     <button className="btn btn-secondary mx-2 my-2" onClick={handleShow} >
@@ -131,7 +134,11 @@ const Post = ({post}) => {
                 </div> : null}
                 
             <div className="row">
-                <div className="col-sm-10">
+                <div className="col-sm-2">
+                    <p className=" mx-2 my-2">Usuario</p>
+                    <p className="text-justify mx-2 my-2">{users ? users.name : null}</p>
+                </div>
+                <div className="col-sm-8">
                     <h3 className=" mx-2 my-2">{title}</h3>
                     <p className="text-justify mx-2 my-2">{contentText}</p>
                 </div>

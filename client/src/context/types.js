@@ -7,6 +7,7 @@ export const CLEAR_ERROR = 'CLEAR_ERROR'
 export const LOG_OUT = 'LOG_OUT'
 export const AUTH_ERROR = 'AUTH_ERROR'
 export const USER_LOADED = 'USER_LOADED'
+export const USERS_LOADED = 'USERS_LOADED'
 
 export const GET_POSTS = 'GET_POSTS'
 export const POSTS_ERROR = 'POSTS_ERROR'

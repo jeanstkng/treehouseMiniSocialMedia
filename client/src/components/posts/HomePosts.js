@@ -15,9 +15,13 @@ const HomePosts = () => {
 
     const handleClose = () => setShow(false);
     const handleShow = () => {setShow(true)}
+
+    var fondo = {
+        backgroundImage: 'linear-gradient(lightgrey, #007a80)'
+    }
     return (
         
-        <div className="container">
+        <div className="container" style={fondo}>
             <br/>
             <div className="text-center">
             <button className="btn btn-primary" onClick={handleShow}>Crear Publicacion</button>

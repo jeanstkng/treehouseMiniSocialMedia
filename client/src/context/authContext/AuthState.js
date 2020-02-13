@@ -7,7 +7,7 @@ import {
     SUCCESS_LOGIN,
     FAIL_REGISTER,
     FAIL_LOGIN,
-    SET_ERROR,
+    USERS_LOADED,
     CLEAR_ERROR,
     LOG_OUT,
     AUTH_ERROR,
@@ -19,7 +19,9 @@ const AuthState = (props) => {
     const initialState = {
         user: null,
         userAuth:null,
-        errors:null
+        errors:null,
+        users: null,
+        cargando: false
     }
     const [state, dispatch]= useReducer(authReducer, initialState)
 
@@ -42,7 +44,26 @@ const AuthState = (props) => {
                 payload: err
             })
         }
-          
+    }
+
+    //Get all users
+    const getUsers = async (id) => {
+        state.cargando = true
+        try {
+            const res = await axios.get(`auth/all/${id}`)
+            dispatch({
+                type: USERS_LOADED,
+                payload: res.data
+            })
+            console.log(res.data)
+            
+        } catch (err) {
+            dispatch({
+                type: AUTH_ERROR,
+                payload: err
+            })
+        }
+            
     }
 
     // register user
@@ -111,9 +132,12 @@ const AuthState = (props) => {
     return (
         <AuthContext.Provider value={{
             user: state.user,
+            users: state.users,
             userAuth: state.userAuth,
             errors: state.errors,
             getUser: getUser,
+            getUsers: getUsers,
+            cargando: state.cargando,
             registerUser,
             loginUser,
             logoutUser,

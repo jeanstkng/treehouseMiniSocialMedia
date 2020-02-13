@@ -3,7 +3,7 @@ import {
     SUCCESS_LOGIN,
     FAIL_REGISTER,
     FAIL_LOGIN,
-    SET_ERROR,
+    USERS_LOADED,
     CLEAR_ERROR,
     LOG_OUT,
     USER_LOADED,
@@ -18,6 +18,15 @@ import {
                 user: payload,
                 userAuth: true,
                 errors: null,
+                cargando: false
+            }
+        case USERS_LOADED:
+            return{
+                ...state,
+                users: payload,
+                userAuth: true,
+                errors: null,
+                cargando: false
             }
         case SUCCESS_REGISTER:
         case SUCCESS_LOGIN:
@@ -37,7 +46,8 @@ import {
                 token: null,
                 user: null,
                 userAuth:null,
-                errors: payload
+                errors: payload,
+                cargando: false
             }
         case LOG_OUT:
             localStorage.removeItem('token')

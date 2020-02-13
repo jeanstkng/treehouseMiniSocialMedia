@@ -17,6 +17,16 @@ router.get('/', auth, async (req, res) => {
     }
 })
 
+router.get('/all/:id', auth, async (req, res) => {
+    try {
+        const user = await User.findById(req.params.id).select("-password")
+        res.json(user)
+    } catch (err) {
+        console.error(err.message)
+        res.status(500).send('Server Error')
+    }
+})
+
 router.post('/',
     [
         check('email', 'Por favor ingrese un email válido.').isEmail(),

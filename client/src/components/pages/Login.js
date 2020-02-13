@@ -19,15 +19,13 @@ const Login = (props) => {
         setUser({ ...user, [e.target.name]: e.target.value })
         if (errors !== null) { clearError() }
     }
-    if(errors && errors.error){
-        console.log(errors.error.msg)
-        }
    
     const submit = e => {
         e.preventDefault()
         loginUser({ email, password})
         clearError()
     }
+
 
     var divStyle = {
         display: 'block',
@@ -45,13 +43,13 @@ const Login = (props) => {
             <form onSubmit={submit} style={form}>
                 <div className="form-group row">
                   <label className="col-sm-3 mr-2 font-weight-bold">Email</label>
-                  <input type="text"
-                    className="form-control col-sm-8" placeHolder="Ingrese un email." name="email" value={email} aria-describedby="emailId" onChange={handleChange}/>
+                  <input type="email" required
+                    className="form-control col-sm-8" placeholder="Ingrese un email." name="email" value={email} aria-describedby="emailId" onChange={handleChange}/>
                 </div>
                 <div className="form-group row">
                   <label className="col-sm-3 mr-2 font-weight-bold">Contraseña</label>
-                  <input type="password"
-                    className="form-control col-sm-8" placeHolder="Ingrese una contraseña." name="password" value={password} aria-describedby="passwordId" onChange={handleChange}/>
+                  <input type="password" required
+                    className="form-control col-sm-8" placeholder="Ingrese una contraseña." name="password" value={password} aria-describedby="passwordId" onChange={handleChange}/>
                     <label className="col-sm-2"></label>
                     <small id="passwordId" className="form-text text-muted col-sm-10"></small>
                 </div>
@@ -64,7 +62,7 @@ const Login = (props) => {
             </form>
             <div className="row">
                 {errors !== null && <button className="btn btn-danger">
-                    {errors}
+                    {errors }
                     <span onClick={clearError}>&nbsp;X</span></button>}
                 <label className="col-sm-2"></label>
                 <p className="col-sm-8">¿Aún no te registras? {" "} <Link to='/register'>Registrate</Link></p>

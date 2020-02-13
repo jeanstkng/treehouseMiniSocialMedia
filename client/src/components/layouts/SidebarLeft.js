@@ -6,7 +6,7 @@ const SidebarLeft = () => {
         <ul className="sidebar-nav">
             <li className="sidebar-brand">
                 <a href="/#">
-                  Amigos
+                  <p className="text-light font-weight-bold">Amigos</p>
                 </a>
             </li>
             {/* <li>
