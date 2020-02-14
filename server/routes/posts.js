@@ -2,7 +2,7 @@ const router = require('express').Router()
 const auth = require('../middleware/auth')
 const {check, validationResult} = require('express-validator')
 
-//Guest model
+//Post model
 const Post = require('../models/Post')
 
 /*router.get('/', auth, async (req, res) => {
@@ -87,7 +87,7 @@ router.delete('/:id', auth, async (req,res) => {
 
 router.put('/:id', auth, async(req, res) => {
     const {title, contentText, points} = req.body
-    const updatedGuest = {title, contentText, points}
+    const updatedPost = {title, contentText, points}
 
     try {
         let post = Post.findById(req.params.id)
@@ -95,7 +95,7 @@ router.put('/:id', auth, async(req, res) => {
             return res.status(404).json({msg: 'Post not found'})
         }
 
-        post = await Post.findByIdAndUpdate(req.params.id, {$set: updatedGuest}, {new: true})
+        post = await Post.findByIdAndUpdate(req.params.id, {$set: updatedPost}, {new: true})
 
         res.send(post)
 

@@ -47,10 +47,10 @@ const AuthState = (props) => {
     }
 
     //Get all users
-    const getUsers = async (id) => {
+    const getUsers = async () => {
         state.cargando = true
         try {
-            const res = await axios.get(`auth/all/${id}`)
+            const res = await axios.get('auth/all/')
             dispatch({
                 type: USERS_LOADED,
                 payload: res.data
@@ -82,7 +82,7 @@ const AuthState = (props) => {
         } catch (err) {
             dispatch({
                 type: FAIL_REGISTER,
-                payload: err.response.data.msg
+                payload: err.response.data
             })
         }
     }
@@ -104,7 +104,7 @@ const AuthState = (props) => {
         } catch (err) {
             dispatch({
                 type: FAIL_LOGIN,
-                payload: err.response.data.msg
+                payload: err.response.data
             })
         }
     }

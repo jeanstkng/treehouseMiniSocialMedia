@@ -35,7 +35,7 @@ const HomePosts = () => {
 
             <Modal show={show} onHide={handleClose}>
                 <Modal.Header closeButton>
-                <Modal.Title> Crear Publicacion </Modal.Title>
+                <Modal.Title> ¡Cultiva con los demás! </Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
                     <br/>

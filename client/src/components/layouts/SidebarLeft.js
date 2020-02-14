@@ -1,13 +1,36 @@
-import React from 'react'
+import React,{useContext,useEffect} from 'react'
+import FriendContext from '../../context/friendContext/friendContext'
+import AuthContext from '../../context/authContext/authContext'
+import Friend from '../friends/Friend'
+
 
 const SidebarLeft = () => {
+
+    const {friends,search, getFriends} = useContext(FriendContext)
+    const { user,users,getUser,getUsers, cargando } = useContext(AuthContext)
+
+    useEffect(() => {
+        getFriends()
+        // eslint-disable-next-line
+      }, [])
+      
+    useEffect(() => {
+        getUser()
+        // eslint-disable-next-line
+      }, [])
+
     return (
         <div id="left-sidebar-wrapper">
         <ul className="sidebar-nav">
             <li className="sidebar-brand">
                 <a href="/#">
-                  <p className="text-light font-weight-bold">Amigos</p>
+                  <h4 className="text-light mt-4 font-weight-bold">Amigos</h4>
                 </a>
+            </li>
+            <li>
+                { friends && user ? friends.find(friends => friends.owner === user._id) ?
+                friends.find(friends => friends.owner === user._id).friends.map(friend => <Friend key={friend._id} friend={friend} />) : null : null}
+                
             </li>
             {/* <li>
                 <a data-toggle="collapse" href="/#" aria-expanded="false">Dashboard <span className="caret"></span></a>

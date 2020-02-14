@@ -25,7 +25,7 @@ const Login = (props) => {
         loginUser({ email, password})
         clearError()
     }
-
+    console.log(errors)
 
     var divStyle = {
         display: 'block',
@@ -42,12 +42,12 @@ const Login = (props) => {
             <div style={divStyle}>
             <form onSubmit={submit} style={form}>
                 <div className="form-group row">
-                  <label className="col-sm-3 mr-2 font-weight-bold">Email</label>
+                  <label className="col-sm-3 mr-3 font-weight-bold">Email</label>
                   <input type="email" required
                     className="form-control col-sm-8" placeholder="Ingrese un email." name="email" value={email} aria-describedby="emailId" onChange={handleChange}/>
                 </div>
                 <div className="form-group row">
-                  <label className="col-sm-3 mr-2 font-weight-bold">Contraseña</label>
+                  <label className="col-sm-3 mr-3 font-weight-bold">Contraseña</label>
                   <input type="password" required
                     className="form-control col-sm-8" placeholder="Ingrese una contraseña." name="password" value={password} aria-describedby="passwordId" onChange={handleChange}/>
                     <label className="col-sm-2"></label>
@@ -55,14 +55,15 @@ const Login = (props) => {
                 </div>
                 
                 <div className="row">
-                    <label className="col-sm-3 mr-2"></label>
+                    <label className="col-sm-3 mr-3"></label>
                     <input type="submit" value="Ingresar" className="btn btn-primary col-sm-4"/>
                 </div>
                 
             </form>
             <div className="row">
                 {errors !== null && <button className="btn btn-danger">
-                    {errors }
+                    {errors.msg}
+                    {errors && errors.error ? errors.error[0].msg : null}
                     <span onClick={clearError}>&nbsp;X</span></button>}
                 <label className="col-sm-2"></label>
                 <p className="col-sm-8">¿Aún no te registras? {" "} <Link to='/register'>Registrate</Link></p>

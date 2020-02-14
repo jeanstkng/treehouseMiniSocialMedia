@@ -68,7 +68,8 @@ const Register = (props) => {
             </form>
             <div className="row">
                     {errors !== null && <button className="btn btn-danger">
-                    {errors}
+                    {errors ? errors.msg : null}
+                    {errors && errors.error ? errors.error[0].msg : null}
                     <span onClick={clearError}>&nbsp;X</span></button>}
                 <label className="col-sm-2"></label>
                 <p className="col-sm-8">¿Ya estás registrado? {" "} <Link to='/login'>Logeate</Link></p>

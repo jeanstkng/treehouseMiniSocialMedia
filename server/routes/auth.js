@@ -17,9 +17,9 @@ router.get('/', auth, async (req, res) => {
     }
 })
 
-router.get('/all/:id', auth, async (req, res) => {
+router.get('/all', auth, async (req, res) => {
     try {
-        const user = await User.findById(req.params.id).select("-password")
+        const user = await User.find().select("-password")
         res.json(user)
     } catch (err) {
         console.error(err.message)

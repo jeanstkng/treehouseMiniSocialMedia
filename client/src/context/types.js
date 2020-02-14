@@ -20,3 +20,14 @@ export const CLEAR_POSTS = 'CLEAR_POSTS'
 export const SEARCH_POST = 'SEARCH_POST'
 export const CLEAR_EDIT = 'CLEAR_EDIT'
 export const EDIT_POST = 'EDIT_POST'
+
+
+export const GET_FRIENDS = 'GET_FRIENDS'
+export const FRIENDS_ERROR = 'FRIENDS_ERROR'
+export const ADD_FRIEND = 'ADD_FRIEND'
+export const REMOVE_FRIEND = 'REMOVE_FRIEND'
+export const UPDATE_FRIEND = 'UPDATE_FRIEND'
+
+export const CLEAR_FRIENDS = 'CLEAR_FRIENDS'
+export const SEARCH_FRIEND = 'SEARCH_FRIEND'
+export const EDIT_FRIEND = 'EDIT_FRIEND'

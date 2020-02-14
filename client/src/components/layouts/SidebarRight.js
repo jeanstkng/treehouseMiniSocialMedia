@@ -8,10 +8,10 @@ const SidebarRight = () => {
         <div id="right-sidebar-wrapper">
             <ul className="sidebar-nav">
                 <li className="sidebar-brand">
-                    <h4 className="text-light font-weight-bold mt-3">TreeHouse</h4>
+                    <h4 className="text-light font-weight-bold mt-4">TreeHouse</h4>
                 </li>
                 <li>
-                    <p className="ml-3 text-light" >Bienvenido {user.name}</p>
+                    <p className="ml-3 text-light" >Bienvenido {user ? user.name : null}</p>
                 </li>
                 <li>
                     <button onClick={logoutUser} className="ml-3 btn btn-light" >Cerrar Sesión</button>

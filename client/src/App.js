@@ -10,6 +10,7 @@ import PrivateRoute from './components/pages/routes/PrivateRoute'
 import Register from './components/pages/Register'
 import Login from "./components/pages/Login";
 import AuthState from "./context/authContext/AuthState"
+import FriendState from './context/friendContext/FriendState'
 import PostState from "./context/postContext/PostState"
 import setToken from './utils/setToken'
 
@@ -23,6 +24,7 @@ function App() {
   return (
     <AuthState>
     <PostState>
+    <FriendState>
       <Router>
         <div>
           <Switch>
@@ -33,6 +35,7 @@ function App() {
           <script type="text/javascript" src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
         </div>
       </Router>
+    </FriendState>
     </PostState>
     </AuthState>
   );
