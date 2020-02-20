@@ -30,7 +30,7 @@ const HomePosts = () => {
             <div className="col-md-12">
                 { search != null ?
                   search.map(post => <Post key={post._id} post={post} />) :
-                  posts.map(post => <Post key={post._id} post={post} />)}
+                  posts.reverse().map((post) => <Post key={post._id} post={post} />)}
             </div>
 
             <Modal show={show} onHide={handleClose}>

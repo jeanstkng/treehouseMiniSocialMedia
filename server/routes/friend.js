@@ -1,6 +1,5 @@
 const router = require('express').Router()
 const auth = require('../middleware/auth')
-const {check, validationResult} = require('express-validator')
 
 //Friend model
 const Friend = require('../models/Friend')

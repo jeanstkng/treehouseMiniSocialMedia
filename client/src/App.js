@@ -12,6 +12,7 @@ import Login from "./components/pages/Login";
 import AuthState from "./context/authContext/AuthState"
 import FriendState from './context/friendContext/FriendState'
 import PostState from "./context/postContext/PostState"
+import RequestState from './context/requestContext/RequestState'
 import setToken from './utils/setToken'
 
 library.add(faArrowDown,faArrowUp, faArrowAltCircleRight, faArrowAltCircleLeft)
@@ -24,6 +25,7 @@ function App() {
   return (
     <AuthState>
     <PostState>
+    <RequestState>
     <FriendState>
       <Router>
         <div>
@@ -36,6 +38,7 @@ function App() {
         </div>
       </Router>
     </FriendState>
+    </RequestState>
     </PostState>
     </AuthState>
   );

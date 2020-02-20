@@ -3,16 +3,14 @@ const mongoose = require('mongoose')
 const friendSchema = new mongoose.Schema({
     owner:{
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'users'
+        ref: 'users',
+        required: true
     },
     friends: [{
         person: {
             type: mongoose.Schema.Types.ObjectId,
             ref: 'users',
             required: true
-        },
-        isAccepted: {
-            type: Boolean
         }
     }]
 })

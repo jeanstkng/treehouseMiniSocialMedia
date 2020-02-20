@@ -3,12 +3,12 @@ import AuthContext from '../../context/authContext/authContext'
 import FriendContext from '../../context/friendContext/friendContext'
 
 const Friend = ({friend}) => {
-
+    const {friends,search, getFriends} = useContext(FriendContext)
     const { user,users,getUser,getUsers, cargando } = useContext(AuthContext)
 
     useEffect( () => {
         getUser()
-
+        getFriends()
         // eslint-disable-next-line
     },[])
 
@@ -22,7 +22,7 @@ const Friend = ({friend}) => {
     return (
         <div>
             <p>
-                {users ? users.find(user => user._id === friend.person && friend.isAccepted === true) ? users.find(user => user._id === friend.person && friend.isAccepted === true).name : null  : null}
+                {users && user ? users.find(user => user._id === friend.person).name : null}
             </p>
         </div>
     )
