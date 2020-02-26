@@ -47,14 +47,14 @@ const {addPost, editing, clearEdit, updatePost} = useContext(PostContext)
             
         <form onSubmit={onsubmit} >
           <div className="form-group row">
-            <label className="col-form-label col-sm-2">Titulo</label>
+            <label className="col-form-label col-sm-2 font-weight-bold">Título</label>
             <div className="col-sm-10">
-             <input  className="form-control" type="text" placeholder="Titulo" name="title" value={title} onChange={handleChange}/>
+             <input  className="form-control" type="text" placeholder="Título" name="title" value={title} onChange={handleChange}/>
             </div>
           </div>
 
           <div className="form-group row">
-            <label className="col-form-label col-sm-2">Contenido</label>
+            <label className="col-form-label col-sm-2 font-weight-bold">Contenido</label>
             <div className="col-sm-10">
               <input  className="form-control" type="text" placeholder="Contenido" name="contentText" value={contentText} onChange={handleChange}/>
             </div>
@@ -63,7 +63,7 @@ const {addPost, editing, clearEdit, updatePost} = useContext(PostContext)
           <div className="form-group row">
             <label className="col-form-label col-sm-2"></label>
             <div className="col-sm-10">
-              <input type="submit" value={editing !== null ? 'Actualizar Post' : 'Anadir Post'} className="btn btn-primary mr-4" />
+              <input type="submit" value={editing !== null ? 'Actualizar Publicación' : 'Anadir Publicación'} className="btn btn-primary mr-4" />
               {editing !== null ? <input type="button" onClick={clearEdit} value="Cancelar" className="btn btn-secondary"/> : null}
             </div>
           </div>

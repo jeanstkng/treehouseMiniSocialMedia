@@ -94,7 +94,6 @@ const FriendState = (props) => {
                 payload: err.response.msg
             })
         }
-        console.log(friend)
     }
 
     //Editar friend

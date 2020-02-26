@@ -2,7 +2,8 @@ import React from 'react';
 //import logo from './logo.svg';
 import 'bootstrap/dist/css/bootstrap.css';
 import { library } from '@fortawesome/fontawesome-svg-core'
-import { faArrowUp, faArrowDown, faArrowAltCircleLeft, faArrowAltCircleRight } from '@fortawesome/free-solid-svg-icons'
+import { faArrowUp, faArrowDown, faArrowAltCircleLeft, faArrowAltCircleRight,
+          faUser, faTrashAlt, faPlus, faCheck } from '@fortawesome/free-solid-svg-icons'
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom'
 import './App.css';
 import Home from './components/pages/Home'
@@ -15,7 +16,7 @@ import PostState from "./context/postContext/PostState"
 import RequestState from './context/requestContext/RequestState'
 import setToken from './utils/setToken'
 
-library.add(faArrowDown,faArrowUp, faArrowAltCircleRight, faArrowAltCircleLeft)
+library.add(faArrowDown,faArrowUp, faArrowAltCircleRight, faArrowAltCircleLeft, faUser, faTrashAlt, faPlus, faCheck )
 
 if (localStorage.token) {
   setToken(localStorage.token)

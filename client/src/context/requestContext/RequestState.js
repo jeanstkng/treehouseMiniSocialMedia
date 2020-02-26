@@ -94,7 +94,6 @@ const RequestState = (props) => {
                 payload: err.response.msg
             })
         }
-        console.log(request)
     }
 
     //Editar request

@@ -11,7 +11,7 @@ const SidebarRight = () => {
                     <h4 className="text-light font-weight-bold mt-4">TreeHouse</h4>
                 </li>
                 <li>
-                    <p className="ml-3 text-light" >Bienvenido {user ? user.name : null}</p>
+                    <p className="ml-3 text-light" >Bienvenido, {user ? user.name : null}</p>
                 </li>
                 <li>
                     <button onClick={logoutUser} className="ml-3 btn btn-light" >Cerrar Sesión</button>

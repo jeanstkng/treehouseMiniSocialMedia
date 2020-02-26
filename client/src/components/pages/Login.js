@@ -31,44 +31,49 @@ const Login = (props) => {
         display: 'block',
         textAlign: 'center'
     }
+
     var form =
     {
         display: 'inline-block',
     }
-
+    //Photo by Casey Horner on Unsplash
     return (
         <div className="container text-center mt-5">
-            <h1>TreeHouse - Iniciar Sesión</h1>
-            <div style={divStyle}>
-            <form onSubmit={submit} style={form}>
-                <div className="form-group row">
-                  <label className="col-sm-3 mr-3 font-weight-bold">Email</label>
-                  <input type="email" required
-                    className="form-control col-sm-8" placeholder="Ingrese un email." name="email" value={email} aria-describedby="emailId" onChange={handleChange}/>
-                </div>
-                <div className="form-group row">
-                  <label className="col-sm-3 mr-3 font-weight-bold">Contraseña</label>
-                  <input type="password" required
-                    className="form-control col-sm-8" placeholder="Ingrese una contraseña." name="password" value={password} aria-describedby="passwordId" onChange={handleChange}/>
-                    <label className="col-sm-2"></label>
-                    <small id="passwordId" className="form-text text-muted col-sm-10"></small>
-                </div>
-                
+            
+            <div className="card">
+                <h1>TreeHouse - Iniciar Sesión</h1>
+                <div style={divStyle}>
+                <form onSubmit={submit} style={form}>
+                    <div className="form-group row">
+                    <label className="col-sm-4 font-weight-bold">Email</label>
+                    <input type="email" required
+                        className="form-control col-sm-8" placeholder="Ingrese un email." name="email" value={email} aria-describedby="emailId" onChange={handleChange}/>
+                    </div>
+                    <div className="form-group row">
+                    <label className="col-sm-4 font-weight-bold">Contraseña</label>
+                    <input type="password" required
+                        className="form-control col-sm-8" placeholder="Ingrese una contraseña." name="password" value={password} aria-describedby="passwordId" onChange={handleChange}/>
+                        <label className="col-sm-2"></label>
+                        <small id="passwordId" className="form-text text-muted col-sm-10"></small>
+                    </div>
+                    
+                    <div className="row">
+                        <label className="col-sm-4"></label>
+                        <input type="submit" value="Ingresar" className="btn btn-primary col-sm-4"/>
+                    </div>
+                    
+                </form>
                 <div className="row">
-                    <label className="col-sm-3 mr-3"></label>
-                    <input type="submit" value="Ingresar" className="btn btn-primary col-sm-4"/>
+                    {errors !== null && <button className="btn btn-danger">
+                        {errors.msg}
+                        {errors && errors.error ? errors.error[0].msg : null}
+                        <span onClick={clearError}>&nbsp;X</span></button>}
+                    <label className="col-sm-2"></label>
+                    <p className="col-sm-8">¿Aún no te registras? {" "} <Link to='/register'>Registrate</Link></p>
                 </div>
-                
-            </form>
-            <div className="row">
-                {errors !== null && <button className="btn btn-danger">
-                    {errors.msg}
-                    {errors && errors.error ? errors.error[0].msg : null}
-                    <span onClick={clearError}>&nbsp;X</span></button>}
-                <label className="col-sm-2"></label>
-                <p className="col-sm-8">¿Aún no te registras? {" "} <Link to='/register'>Registrate</Link></p>
+                </div>
             </div>
-            </div>
+            
         </div>
     )
 }

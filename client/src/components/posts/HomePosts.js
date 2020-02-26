@@ -24,13 +24,13 @@ const HomePosts = () => {
         <div className="container" style={fondo}>
             <br/>
             <div className="text-center">
-            <button className="btn btn-primary" onClick={handleShow}>Crear Publicacion</button>
+            <button className="btn btn-primary" onClick={handleShow}>Crear Publicación</button>
             </div>
             <hr/>
             <div className="col-md-12">
                 { search != null ?
                   search.map(post => <Post key={post._id} post={post} />) :
-                  posts.reverse().map((post) => <Post key={post._id} post={post} />)}
+                  posts.map((post) => <Post key={post._id} post={post} />)}
             </div>
 
             <Modal show={show} onHide={handleClose}>

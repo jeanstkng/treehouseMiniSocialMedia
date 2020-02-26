@@ -11,7 +11,7 @@ const Post = ({post}) => {
 
     const {removePost, editPost, editing, updatePost} = useContext(PostContext)
     const { user,users,getUser,getUsers, cargando } = useContext(AuthContext)
-    const { getFriends, updateFriend, friends, addFriend } = useContext(FriendContext)
+    const { getFriends, friends } = useContext(FriendContext)
     const { addRequest, getRequests, requests } = useContext(RequestContext)
 
     useEffect( () => {
@@ -25,7 +25,6 @@ const Post = ({post}) => {
         getRequests()
         // eslint-disable-next-line
     },[])
-
 
     const {_id, title, contentText, points} = post
 
@@ -48,115 +47,22 @@ const Post = ({post}) => {
     const mostrarSoli = () => {setMostrar(true)}
 
     const enviarSolicitud = () => {
-        if(friends && user && requests)
+        if(user && requests)
         {
-            if(!friends.find(friends => friends.owner === user._id)){
-                //!friends.find(friends => friends.owner === user._id).friends.find(friend => friend.person === post.user
-                if(!requests.find(request => request.sender === user._id && request.receiver === post.user && (request.isCanceled !== true || request.isAccepted !== true))){
-                    addRequest({
-                        sender: user._id,
-                        receiver: post.user,
-                        isCanceled: false,
-                        isAccepted: false
-                    })
-                }
-            }
+            if(!requests.find(request => request.sender === user._id 
+                              && request.receiver === post.user 
+                              && (request.isCanceled !== true || request.isAccepted !== true))){
+                addRequest({
+                    sender: user._id,
+                    receiver: post.user,
+                    isCanceled: false,
+                    isAccepted: false
+                })
+            }            
         }
+        cerrarSoli()
         console.log('solicitud enviada')
-        console.log(requests)
     }
-
-    /*const actualizarAmigos = () => {
-        const existenAmigos = friends.find(friend => friend.owner === user._id)
-        const existenAmigosReceptor = friends.find(friend => friend.owner === post.user)
-    
-        if(existenAmigos && (existenAmigosReceptor)){
-    
-            if(existePer && existePerReceptor && existePerReceptor.isAccepted !== true){
-                const amigosFilt = existenAmigos.friends.filter(friends => friends !== existePer)
-                const amigosFiltReceptor = existenAmigosReceptor.friends.filter(friends => friends !== existePerReceptor)
-                console.log('existen registros y sobreescribiendo')
-                console.log(amigosFilt)
-                
-                updateFriend({
-                        ...existenAmigos,
-                        friends: [
-                            ...amigosFilt,
-                            {
-                                ...existePer,
-                                isAccepted: true
-                            }
-                        ]
-                })
-                updateFriend({
-                    ...existenAmigosReceptor,
-                    friends: [
-                        ...amigosFiltReceptor,
-                        {
-                            ...existePerReceptor,
-                            isAccepted: true
-                        }
-                    ]
-                })
-            }
-
-        }
-        if(existenAmigos && existenAmigosReceptor){
-            const existePer = existenAmigos.friends.find(friend => friend.person === post.user) 
-            const existePerReceptor = existenAmigosReceptor.friends.find(friend => friend.person === user._id)
-        
-            const amigosFilt = existenAmigos.friends.filter(friends => friends !== existePer)
-            const amigosFiltReceptor = existenAmigosReceptor.friends.filter(friends => friends !== existePerReceptor)
-            console.log('si hay registros')
-            console.log(amigosFilt)
-            //existen amigos asociados al usuario
-            updateFriend({
-                    ...existenAmigos,
-                    friends: [
-                        ...amigosFilt,
-                        {
-                            ...existenAmigos,
-                            person: users.find(user => user._id === post.user)._id,
-                            isAccepted: true
-                        }
-                    ]
-            })
-            updateFriend({
-                ...existenAmigosReceptor,
-                friends: [
-                    ...amigosFiltReceptor,
-                    {
-                        ...existenAmigosReceptor,
-                        person: user._id,
-                        isAccepted: false
-                    }
-                ]
-            })
-        }
-        else{
-            console.log('creacion de amigos')
-            addFriend({
-                owner: user._id,
-                friends: [
-                    {
-                        person: users.find(user => user._id === post.user)._id,
-                        isAccepted: true
-                    }
-                ]
-            })
-            addFriend({
-                owner: post.user,
-                friends: [
-                    {
-                        person: user._id,
-                        isAccepted: false
-                    }
-                ]
-            })
-        }
-        setMostrar(false)
-        console.log(friends)
-    }*/
     
     let counter = (points.filter(puntos => puntos.isPositive === true)).length
     let counter2 = (points.filter(puntos => puntos.isPositive === false)).length
@@ -171,7 +77,7 @@ const Post = ({post}) => {
     const setPointUp = () => {
         const usuario = user._id
         const existe = post.points.find(points => points.user === usuario)
-        console.log(existe)
+
         if(existe && existe.isPositive === false){
             let filtrado = post.points.filter(points => points !== existe)
             updatePost({
@@ -196,19 +102,17 @@ const Post = ({post}) => {
                     }
                 ]
             })
-            //console.log(post)
         }
         else{
-            console.log('ya likeado')
+            console.log('+++')
         }
         updateCounter()
-        //console.log(post)
     }
 
     const setPointDown = () => {
         const usuario = user._id
         const existePositivo = post.points.find(points => points.user === usuario)
-        //console.log(existePositivo)
+
         if(existePositivo && existePositivo.isPositive === true){
             let filtrado = post.points.filter(points => points !== existePositivo)
             updatePost({
@@ -238,7 +142,6 @@ const Post = ({post}) => {
             console.log('---')
         }
         updateCounter()
-        //console.log(post)
     }
     
 
@@ -259,7 +162,13 @@ const Post = ({post}) => {
             <div className="row">
                 <div className="col-md-2 col-sm-2">
                     <p className="text-center mx-2 my-2 font-weight-bold">Usuario</p>
-                    <p onClick={mostrarSoli} className="text-center mx-2 my-2 font-weight-bold">{users && post ? users.find(user => user._id === post.user).name : null}</p>
+                    <p className="text-center mx-2 my-2 font-weight-bold">{users && post ? users.find(user => user._id === post.user).name : null} &nbsp;
+                    {users && user && friends && requests ? 
+                    !(post.user === user._id) ?
+                    !requests.find(request => (request.sender === user._id && request.receiver === post.user) || (request.receiver === user._id && request.sender === post.user)) ? 
+                    friends.find(friend => friend.owner === user._id) ?
+                    !friends.find(friend => friend.owner === user._id).friends.find(friend => friend.person === post.user) ? 
+                    <FontAwesomeIcon icon="plus" onClick={mostrarSoli} /> : null : <FontAwesomeIcon icon="plus" onClick={mostrarSoli} /> : null : null : null}</p>
                 </div>
                 <div className="col-md-8 col-sm-6">
                     <h3 className=" mx-2 my-2">{title}</h3>
@@ -290,7 +199,7 @@ const Post = ({post}) => {
             {editing === null ? handleClose : 
             <Modal show={show} onHide={handleClose}>
                 <Modal.Header closeButton>
-                <Modal.Title> Editar Publicacion </Modal.Title>
+                <Modal.Title> Editar Publicación </Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
                     <br/>
@@ -303,15 +212,16 @@ const Post = ({post}) => {
 
             <Modal show={mostrar} onHide={cerrarSoli}>
                 <Modal.Header closeButton>
-                <Modal.Title> Desea enviar una solicitud a este usuario? </Modal.Title>
+                <Modal.Title> ¿Desea enviar una solicitud a este usuario? </Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
                     <div className="row text-center">
                         <div className="col-3">
-                            <button onClick={enviarSolicitud} className="btn btn-success" >Si</button>
+                            <button onClick={enviarSolicitud}
+                                    className="btn btn-success" >Sí</button>
                         </div>
                         <div className="col-3">
-                        <button onClick={cerrarSoli} className="btn btn-warning" >No</button>
+                        <button onClick={cerrarSoli} className="btn btn-warning">No</button>
                         </div>
                     </div>
                 </Modal.Body>

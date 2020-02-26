@@ -15,6 +15,10 @@
   padding-right: 250px;
 }
 
+.fondoImg {
+  background-image: url('./assets/casey-horner-4rDCa5hBlCs-unsplash.jpg');
+}
+
 #left-sidebar-wrapper {
   z-index: 1000;
   position: fixed;
@@ -23,6 +27,7 @@
   height: 100%;
   margin-left: -250px;
   overflow-y: auto;
+  overflow-x: hidden;
   background: rgb(51, 136, 48);
   -webkit-transition: all 0.5s ease;
   -moz-transition: all 0.5s ease;
