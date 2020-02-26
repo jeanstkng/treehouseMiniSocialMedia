@@ -22,6 +22,17 @@ export const CLEAR_EDIT = 'CLEAR_EDIT'
 export const EDIT_POST = 'EDIT_POST'
 
 
+export const GET_COMMENTS = 'GET_COMMENTS'
+export const COMMENTS_ERROR = 'COMMENTS_ERROR'
+export const ADD_COMMENT = 'ADD_COMMENT'
+export const REMOVE_COMMENT = 'REMOVE_COMMENT'
+export const UPDATE_COMMENT = 'UPDATE_COMMENT'
+
+export const CLEAR_COMMENTS = 'CLEAR_COMMENTS'
+export const SEARCH_COMMENT = 'SEARCH_COMMENT'
+export const EDIT_COMMENT = 'EDIT_COMMENT'
+
+
 export const GET_FRIENDS = 'GET_FRIENDS'
 export const FRIENDS_ERROR = 'FRIENDS_ERROR'
 export const ADD_FRIEND = 'ADD_FRIEND'

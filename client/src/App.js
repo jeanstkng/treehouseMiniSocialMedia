@@ -13,6 +13,7 @@ import Login from "./components/pages/Login";
 import AuthState from "./context/authContext/AuthState"
 import FriendState from './context/friendContext/FriendState'
 import PostState from "./context/postContext/PostState"
+import CommentState from "./context/commentContext/CommentState"
 import RequestState from './context/requestContext/RequestState'
 import setToken from './utils/setToken'
 
@@ -28,6 +29,7 @@ function App() {
     <PostState>
     <RequestState>
     <FriendState>
+    <CommentState>
       <Router>
         <div>
           <Switch>
@@ -38,6 +40,7 @@ function App() {
           <script type="text/javascript" src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
         </div>
       </Router>
+    </CommentState>
     </FriendState>
     </RequestState>
     </PostState>

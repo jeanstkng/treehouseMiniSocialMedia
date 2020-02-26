@@ -6,17 +6,22 @@ import AuthContext from '../../context/authContext/authContext'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import FriendContext from '../../context/friendContext/friendContext'
 import RequestContext from '../../context/requestContext/requestContext'
+import Comment from '../comments/Comment'
+import CommentContext from '../../context/commentContext/commentContext'
+import CommentForm from '../comments/CommentForm'
 
 const Post = ({post}) => {
 
     const {removePost, editPost, editing, updatePost} = useContext(PostContext)
-    const { user,users,getUser,getUsers, cargando } = useContext(AuthContext)
+    const { user,users,getUser,getUsers} = useContext(AuthContext)
     const { getFriends, friends } = useContext(FriendContext)
     const { addRequest, getRequests, requests } = useContext(RequestContext)
+    const { addComment, getComments, comments } = useContext(CommentContext)
 
     useEffect( () => {
         getUser()
         getFriends()
+        getComments()
         // eslint-disable-next-line
     },[])
 
@@ -190,8 +195,14 @@ const Post = ({post}) => {
                     </div>
 
                 </div>
-
             </div>
+            <hr/>
+            <div className="row mx-2 my-2">
+                <CommentForm post={post}/>
+            </div>
+            {comments ? comments.filter(comments => comments.postParent === post._id)
+            ? comments.filter(comments => comments.postParent === post._id)
+            .map(comment => <Comment key={comment._id} comment={comment} />) : null : null}
           </div>
           <br/>
           

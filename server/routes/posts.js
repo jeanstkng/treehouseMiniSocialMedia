@@ -5,17 +5,6 @@ const {check, validationResult} = require('express-validator')
 //Post model
 const Post = require('../models/Post')
 
-/*router.get('/', auth, async (req, res) => {
-    try {
-        const guests = await Guest.find({user: req.user.id})
-        res.json(guests)
-    } catch (err) {
-        console.error(err.message)
-        res.status(500).send('Server Error')
-    }
-})*/
-//Usar lo de arriba para el perfil...
-
 router.get('/', auth, async (req, res) => {
     try {
         const posts = await Post.find().sort({ _id: -1 })
